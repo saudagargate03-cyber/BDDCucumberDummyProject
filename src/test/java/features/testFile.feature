@@ -2,6 +2,7 @@
 
 Feature: login to applications
 
+@smoke
 Scenario: verify cart page
 
 Given I landed on login page
