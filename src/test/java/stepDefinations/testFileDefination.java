@@ -10,16 +10,17 @@ import io.cucumber.java.en.When;
 import utils.baseTest;
 
 public class testFileDefination {
-	public baseTest BaseTest;
-
-	public testFileDefination(WebDriver driver) {
-		this.BaseTest.openBrowser();
-		
-	}
-
+	
+	WebDriver driver;
 	@Given("I landed on login page")
 	public void i_landed_on_login_page() {
 
+			
+			System.setProperty("Webdriver.chrome.driver", "C:/Users/DELL/automation/chromedriver.exe");
+			driver = new ChromeDriver();
+			driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+			driver.manage().window().maximize();
+			
 	}
 
 	@When("I logged into application")
@@ -29,8 +30,8 @@ public class testFileDefination {
 
 	@When("Search for {string} in searchbox")
 	public void search_for_in_searchbox(String Name) throws InterruptedException {
-		BaseTest.openBrowser().findElement(By.xpath("//input[@type=\"search\"]")).sendKeys(Name);
-		BaseTest.openBrowser().findElement(By.xpath("//button[@class=\"search-button\"]")).click();
+		driver.findElement(By.xpath("//input[@type=\"search\"]")).sendKeys(Name);
+		driver.findElement(By.xpath("//button[@class=\"search-button\"]")).click();
 		
 		Thread.sleep(3000);
 
@@ -39,7 +40,7 @@ public class testFileDefination {
 	@Then("Home page is displayed")
 	public void home_page_is_displayed() {
 		
-		BaseTest.openBrowser().close();
+		driver.close();
 		
 	}
 
